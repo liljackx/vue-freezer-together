@@ -1,0 +1,31 @@
+  <!-- <b-card no-body class="overflow-hidden img-right" style="max-width: 450px;max-height: 150px;">
+    <b-row no-gutters>
+      <b-col md="4">
+        <b-card-img id="cover-image" :src="track.cover" alt="Image" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body :title="track.title">
+          <b-card-text>
+            {{track.artist}}
+          </b-card-text>
+          <div class="controls">
+            <button type="button" id="button_bw" class="btn" >
+                <b-icon icon="skip-backward"></b-icon>
+            </button>
+            <button type="button" id="button_bw" class="btn">
+                <b-icon icon="play"></b-icon>
+                <b-icon v-if="playback.playing" icon="pause"></b-icon>
+             </button>
+            <button type="button" id="button_bw" class="btn">
+                <b-icon icon="skip-forward"></b-icon>
+            </button>
+          </div>
+
+            <button type="button" class="btn">
+                <b-icon icon="list-task"></b-icon>
+            </button>
+             <b-progress id="progress-bar" height="3px" :value="50" :max="100" :variant="primary" :key="1"></b-progress>
+        </b-card-body>
+       </b-col>
+    </b-row>
+  </b-card>  -->

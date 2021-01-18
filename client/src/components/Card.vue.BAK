@@ -1,0 +1,112 @@
+<template>
+  <div id="root">
+    <b-card id="player-card" :img-src="track.cover" img-height="125px" img-width="125 px" img-alt="Card image" img-right>
+      <b-card-text>
+        <h5>{{track.title}}</h5>
+        {{track.artist}}
+        <div class="bar">
+            <b-progress id="progress-bar" height="3px" :value="50" :max="100" :variant="primary" :key="1"></b-progress>
+        </div>
+    </b-card-text>
+    </b-card>
+    <div class="controls">
+      <button type="button" id="button_bw" class="btn" >
+        <b-icon icon="skip-backward-fill"></b-icon>
+      </button>
+      <button type="button" id="button_bw" class="btn">
+        <p class="h3">
+          <b-icon v-if="!playback.isPlaying" icon="play-fill" @click="playPause"></b-icon>
+          <b-icon v-if="playback.isPlaying" icon="pause-fill" @click="playPause"></b-icon>
+        </p>
+      <!-- <b-icon icon="pause"></b-icon> -->
+      </button>
+      <button type="button" id="button_bw" class="btn">
+        <b-icon icon="skip-forward-fill"></b-icon>
+      </button>
+      <button type="button" class="btn">
+          <b-icon icon="list-task"></b-icon>
+      </button>
+    </div>
+</div>
+</template>
+
+<script>
+const serverURI = "http://localhost:10069/"
+
+export default {
+    name: 'Card',
+    data() {
+      return {
+        playback: {
+          audio: null,
+          isPlaying: false,
+        }
+      }
+    },
+    props: {
+        track: Object,
+    },
+    methods: {
+      // play: async function() {
+      //     if (this.$room.id && this.playback.isPlaying == false) {
+
+      //     }
+      // },
+      playPause: function() {
+        if (!this.playback.isPlaying && this.$room.id && !this.playback.audio) {
+            const streamURI = `${serverURI}stream/${this.track.stream}`
+            this.playback.audio = new Audio(streamURI) 
+            this.playback.isPlaying = true;        
+            this.playback.audio.play()
+            this.$socket.emit("playback", {pause: false})
+            console.log("play")
+        } else if (this.playback.isPlaying && this.$room.id && this.playback.audio) {
+          this.playback.isPlaying = false;
+          this.playback.audio.pause();
+          this.$socket.emit("playback", {pause: true})
+          console.log("pause")
+        } else if (!this.playback.isPlaying && this.$room.id && this.playback.audio) {
+          this.playback.isPlaying = true;
+          this.playback.audio.play();
+          this.$socket.emit("playback", {pause:false})
+        }
+        // this.playback.isPlaying = !this.playback.isPlaying; 
+        // console.log(this.playback.isPlaying)
+      },
+    },
+    // mounted() {
+    //   this.playingTrack = track;
+    // }
+}
+</script>
+
+<style scoped>
+
+#cover-image {
+    width: 150px;
+    /* height: 150px; */
+}
+
+.bar {
+  margin-top: 10px;
+  margin-left: -10px !important;
+}
+
+#player-card {
+  max-width: 400px;
+  max-height: 150px;
+  margin: auto; 
+  border-color: rgba(255, 255, 255, 0.363);
+}
+
+.controls {
+  margin-top: 15px !important;
+  text-align: center;
+}
+
+/* 
+#root {
+  text-align: center;
+} */
+
+</style>

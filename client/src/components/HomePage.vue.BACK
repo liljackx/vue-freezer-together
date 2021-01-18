@@ -1,0 +1,230 @@
+                    <!-- <b-list-group style="max-width:250px;" v-if="this.queue">
+                        <b-list-group-item>🎶 Track queue</b-list-group-item>
+                        Il primo e' fisso
+                        <b-list-group-item v-if="this.$room.queue.length == 0">No tracks in queue</b-list-group-item>
+                        <b-list-group-item v-for="(track, index) in this.$room.queue" :key="index">
+                        <img :src="track.cover" width="40" height="40" style="border-radius: 50%; margin-right: 10px;"/> {{track.title}} - {{track.artist}}
+                        </b-list-group-item>
+                    </b-list-group> -->
+
+                                        <!-- <b-card id="player-card">
+                        <div id="player">
+                            <img v-if="playingTrack.cover" id="cover" width="150" height="150" :src="playingTrack.cover">
+                            <div class="track-info">
+                                <h5 id="track-name">{{playingTrack.title}}</h5>
+                                <h6 id="artist-name">{{playingTrack.artist}}</h6>
+                            </div>
+                            <div class="controllers">
+                                <b-progress id="progress-bar" height="3px" :value="bar.value" :max="playingTrack.duration/1000" :variant="bar.variant" :key="bar.variant"></b-progress>
+                                <button type="button" id="button_bw" class="btn" @click="previous">
+                                    <b-icon icon="skip-backward"></b-icon>
+                                </button>
+                                <button type="button" id="button_bw" class="btn" @click="playPause">
+                                    <b-icon v-if="!playback.playing" icon="play"></b-icon>
+                                    <b-icon v-if="playback.playing" icon="pause"></b-icon>
+                                </button>
+                                <button type="button" id="button_bw" class="btn" @click="next">
+                                    <b-icon icon="skip-forward"></b-icon>
+                                </button>
+                                <button type="button" class="btn" @click="showHideQueue">
+                                    <b-icon icon="list-task"></b-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </b-card> -->
+
+
+                                <!-- <b-input-group id="roomInput" prepend="" class="mt-3">
+                <b-form-input v-if="room.id" v-model="input" placeholder="Track/Playlist/Album url" id="uriInput"></b-form-input>
+                <b-input-group-append>
+                <b-button @click="streamTrack" variant="info">
+                    <b-icon icon="play-fill"></b-icon>
+                </b-button>
+                </b-input-group-append>
+            </b-input-group>
+            ciaooooo
+            -->
+
+
+                <!-- <b-modal id="modal-scrollable" scrollable title="Scrollable Content" size="lg">
+        <b-tabs content-class="mt-3">
+            <b-tab title="Tracks" active><p>
+                <b-list-group>
+                    <b-list-group-item v-for="(res, index) in results.tracks" :key="index">
+                        <b-row>
+                            <b-col cols="8">
+                                <img :src="res.albumArt.thumb" style="border-radius: 50%;margin-right:5px;" height="30" width="30">
+                                {{res.title}} - {{res.artistString}}
+                            </b-col>
+                            <b-col cols="3" style="text-align:right;">
+                                <button type="button" @click="streamTrack(res)" id="button_bw" class="btn">
+                                    <b-icon icon="play"></b-icon>
+                                </button>
+                                <button type="button" id="button_bw" class="btn">
+                                    <b-icon icon="music-note-list"></b-icon>
+                                </button>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                </b-list-group>
+            </p></b-tab>
+            <b-tab title="Album"><p>
+                <b-list-group>
+                    <b-list-group-item v-for="(res, index) in results.albums" :key="index">
+                        <b-row>
+                            <b-col cols="8">
+                                <img :src="res.art.thumb" style="border-radius: 50%;margin-right:5px;" height="30" width="30">
+                                {{res.title}} - {{res.artistString}}
+                            </b-col>
+                            <b-col cols="3" style="text-align:right;">
+                                dubbio: come riprodurre un album ?
+                                <button type="button" id="button_bw" class="btn">
+                                    <b-icon icon="play"></b-icon>
+                                </button>
+                                <button type="button" id="button_bw" class="btn">
+                                    <b-icon icon="music-note-list"></b-icon>
+                                </button>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                </b-list-group>
+            </p></b-tab>
+        </b-tabs>
+    </b-modal> -->
+
+
+
+
+    ==========================================
+
+            // print: function() {
+        //     console.log(this.playback.audio)
+        // },
+        // showHideQueue: function() {
+        //     this.queue = !this.queue;
+        // },
+        // playPause: function() {
+        //     if (!this.playback.playing) {
+        //         // this.playback.audio.play();
+        //         this.playback.playing = true;
+        //         this.$socket.emit("playback", {pause: false});
+        //     } else {
+        //         this.playback.audio.pause();
+        //         this.playback.playing = false;
+        //         this.$socket.emit("playback", {pause: true});
+        //     }
+        //     if (this.track.started == false) {
+        //         this.timer = setInterval(() => {
+        //             if (this.playback.playing) {
+        //                 this.bar.value += 1;
+        //             }
+        //         }, 1000);
+        //         this.track.started = true;
+        //     }
+        //     this.playback.playing = !this.playback.playing;
+        // },
+        // previous: function() {
+        //     // TODO
+        // },
+        // next: function() {
+        //     // TODO
+        //     this.playback.audio.currentTime =  this.playingTrack.duration/1000-5; 
+        // },
+        // createRoom: function() {
+        //     this.room.id = shortid.generate();
+        //     this.room.shareUri = window.location.href + "/room/" + String(this.room.id);
+        //     this.$socket.emit("createRoom");
+        //     console.log("Create room request");
+        // },
+        // joinRoom: function() {
+        //     console.log(this.room.joinRoomId);
+        //     this.room.id = this.room.joinRoomId;
+        //     this.room.shareUri = window.location.href + "/room/" + String(this.room.id);
+        //     this.$socket.emit("joinRoom", {room: this.room.joinRoomId})
+        // },
+        // getTrackId: async function(uri) {
+        //     return uri.split("track/")[1].split("?")[0];
+        // },
+        // getTrack: async function() {
+        //     const response = await fetch("http://localhost:10069/fetchTrackURI?uri="+this.input);
+        //     const redirectedUri = await response.text();
+        //     const trackId = await this.getTrackId(redirectedUri);
+        //     // this.track.uri = "";
+        //     const trackInfosResponse = await fetch("http://localhost:10069/track/"+trackId);
+        //     const trackInfos = await trackInfosResponse.json();
+        //     console.log(trackInfos);
+        //     this.track.uri = "http://localhost:10069/track/"+trackId;
+        //     this.track.cover = trackInfos.albumArt.thumb;
+        //     this.track.title = trackInfos.title;
+        //     this.track.duration = trackInfos.duration;
+        //     this.track.stream = trackInfos.streamUrl;
+        //     this.track.artist = '';
+        //     for (var artist of trackInfos.artists) {
+        //         this.track.artist += artist.name + ", ";
+        //     }
+        // },
+        // trackUpdate: function() {
+        //     console.log("trackUpdate() function called")
+        //     this.$socket.emit("playback", {pause: true});
+        //     // this.playback.audio = new Audio("http://localhost:10069/stream/"+this.track.stream);
+        //     // this.playback.audio.currentTime = 0;
+        // },
+        // onTrackEnd: function() {
+        //     this.playingTrack = this.$room.queue[0];
+        //     console.log("output")
+        //     // console.log(this.track)
+        //     this.$room.queue.shift(); // Remove first element of the list
+        //     this.$playback.loading = true;
+        //     this.$playback.audio = new Audio("http://localhost:10069/stream/"+this.playingTrack.stream);
+        //     this.$playback.audio.onended = this.onTrackEnd;
+        //     this.$playback.loading = false;
+        //     // this.bar.value = 0;
+        //     // this.playback.playing = false;
+        //     this.$playback.audio.play()
+        //     // this.playback.playing = true;
+        // },
+        // streamTrack: async function(track) {
+        //     if (this.room.id && this.playback.playing == false) {
+        //         // So if I have joined a room
+        //         this.playback.loading = true;
+        //         // await this.getTrack()
+        //         this.playingTrack = track;
+        //         this.playback.audio = new Audio("http://localhost:10069/stream/"+track.streamUrl);
+        //         this.$playback.audio = new Audio("http://localhost:10069/stream/"+track.streamUrl);
+        //         this.playback.audio.onended = this.onTrackEnd;
+        //         this.$playback.audio.onended = this.onTrackEnd;
+        //         this.$socket.emit("newTrack", {track: this.track, roomId: this.room.id})
+        //         console.log("emesso")
+        //         this.playback.loading = false;
+        //         this.show = true;
+        //         this.$bvModal.hide("modal-scrollable")
+        //     } else if (this.room.id && this.playback.playing == true) {
+        //         // await this.getTrack()
+        //         // var temp = this.track
+        //         // this.prova.push(temp)
+        //         // this.room.queue.push(this.track)
+        //         // TODO FIX Queue system
+        //         // console.log(this.trackQueue)
+
+        //         // Temporary replication of code above... to fix.. TODO (function getTrack)
+        //         const response = await fetch("http://localhost:10069/fetchTrackURI?uri="+this.input);
+        //         const redirectedUri = await response.text();
+        //         const trackId = await this.getTrackId(redirectedUri);
+        //         // this.track.uri = "";
+        //         const trackInfosResponse = await fetch("http://localhost:10069/track/"+trackId);
+        //         const trackInfos = await trackInfosResponse.json();
+        //         console.log(trackInfos);
+        //         let temp = {};
+        //         temp.uri = "http://localhost:10069/track/"+trackId;
+        //         temp.cover = trackInfos.albumArt.thumb;
+        //         temp.title = trackInfos.title;
+        //         temp.duration = trackInfos.duration;
+        //         temp.stream = trackInfos.streamUrl;
+        //         temp.artist = '';
+        //         for (var artist of trackInfos.artists) {
+        //             temp.artist += artist.name + ", ";
+        //         }
+        //         console.log(temp)
+        //         this.$room.queue.push(temp)
+        //     }
+        // }
